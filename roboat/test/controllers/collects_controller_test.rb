@@ -17,7 +17,7 @@ class CollectsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create collect" do
     assert_difference('Collect.count') do
-      post collects_url, params: { collect: { conductivity: @collect.conductivity, date: @collect.date, ph: @collect.ph, temperature: @collect.temperature, turbidity: @collect.turbidity } }
+      post collects_url, params: { collect: { conductivity: @collect.conductivity, date: @collect.date, location_id: @collect.location_id, ph: @collect.ph, temperature: @collect.temperature, turbidity: @collect.turbidity } }
     end
 
     assert_redirected_to collect_url(Collect.last)
@@ -34,7 +34,7 @@ class CollectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update collect" do
-    patch collect_url(@collect), params: { collect: { conductivity: @collect.conductivity, date: @collect.date, ph: @collect.ph, temperature: @collect.temperature, turbidity: @collect.turbidity } }
+    patch collect_url(@collect), params: { collect: { conductivity: @collect.conductivity, date: @collect.date, location_id: @collect.location_id, ph: @collect.ph, temperature: @collect.temperature, turbidity: @collect.turbidity } }
     assert_redirected_to collect_url(@collect)
   end
 

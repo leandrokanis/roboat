@@ -10,6 +10,7 @@
       <th>Temperature</th>
       <th>Conductivity</th>
       <th>Date</th>
+      <th>Location</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
         <td><%= collect.temperature %></td>
         <td><%= collect.conductivity %></td>
         <td><%= collect.date %></td>
+        <td><%= collect.location_id %></td>
         <td><%= link_to 'Show', collect %></td>
         <td><%= link_to 'Edit', edit_collect_path(collect) %></td>
         <td><%= link_to 'Destroy', collect, method: :delete, data: { confirm: 'Are you sure?' } %></td>

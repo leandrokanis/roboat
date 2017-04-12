@@ -17,7 +17,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create report" do
     assert_difference('Report.count') do
-      post reports_url, params: { report: { begin_date: @report.begin_date, end_date: @report.end_date } }
+      post reports_url, params: { report: { begin_date: @report.begin_date, collect_id: @report.collect_id, end_date: @report.end_date } }
     end
 
     assert_redirected_to report_url(Report.last)
@@ -34,7 +34,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update report" do
-    patch report_url(@report), params: { report: { begin_date: @report.begin_date, end_date: @report.end_date } }
+    patch report_url(@report), params: { report: { begin_date: @report.begin_date, collect_id: @report.collect_id, end_date: @report.end_date } }
     assert_redirected_to report_url(@report)
   end
 

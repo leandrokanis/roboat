@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412173430) do
+ActiveRecord::Schema.define(version: 20170412180539) do
 
   create_table "collects", force: :cascade do |t|
     t.decimal  "ph"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20170412173430) do
     t.datetime "date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "location_id"
+    t.index ["location_id"], name: "index_collects_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 20170412173430) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "collect_id"
+    t.index ["collect_id"], name: "index_reports_on_collect_id"
   end
 
 end
