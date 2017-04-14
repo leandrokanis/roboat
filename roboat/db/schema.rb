@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413232850) do
+ActiveRecord::Schema.define(version: 20170413231225) do
 
   create_table "boats", force: :cascade do |t|
     t.float    "battery_status"
@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 20170413232850) do
     t.float    "compass"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.integer  "boat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.index ["boat_id"], name: "index_users_on_boat_id"
   end
 
 end
