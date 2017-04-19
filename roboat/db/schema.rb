@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412180539) do
+ActiveRecord::Schema.define(version: 20170413232850) do
+
+  create_table "boats", force: :cascade do |t|
+    t.float    "battery_status"
+    t.float    "speed"
+    t.float    "compass"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+  end
 
   create_table "collects", force: :cascade do |t|
     t.decimal  "ph"
@@ -38,6 +47,15 @@ ActiveRecord::Schema.define(version: 20170412180539) do
     t.datetime "updated_at", null: false
     t.integer  "collect_id"
     t.index ["collect_id"], name: "index_reports_on_collect_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "boat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boat_id"], name: "index_users_on_boat_id"
   end
 
 end
