@@ -2,4 +2,48 @@
 
 <%= render 'form', location: @location %>
 
+<div id="map"></div>
+
 <%= link_to 'Back', locations_path %>
+
+
+
+<script async defer  
+src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>  
+<script>  
+
+	var map;  
+	var markers = [];  
+
+function sendLocationToForm(){
+	$("#location_latitude").val(markers[0].getPosition().lat());
+	$("#location_longitude").val(markers[0].getPosition().lng());
+}
+
+	function initMap() {  
+		var lat_lng = {lat: 17.08672, lng: 78.42444};  
+
+		map = new google.maps.Map(document.getElementById('map'), {  
+			zoom: 7,  
+			center: lat_lng,  
+			mapTypeId: google.maps.MapTypeId.TERRAIN  
+		});  
+
+  // This event listener will call addMarker() when the map is clicked.  
+  map.addListener('click', function(event) { 
+  	addMarker(event.latLng);  
+  	sendLocationToForm(); 
+  });  
+}  
+
+// Adds a marker to the map and push to the array.  
+function addMarker(location) {  
+	var marker = new google.maps.Marker({  
+		position: location,  
+		map: map  
+	});  
+	markers.push(marker);  
+}  
+
+
+</script>
