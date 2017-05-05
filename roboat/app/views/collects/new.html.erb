@@ -2,4 +2,70 @@
 
 <%= render 'form', collect: @collect %>
 
+<div id="floating-panel">
+  <input onclick="clearMarkers();" type=button value="Hide Markers">
+  <input onclick="showMarkers();" type=button value="Show All Markers">
+  <input onclick="deleteLastMarker();" type=button value="Deletar Ultima Localização">
+</div>
+
+<div id="map"></div>
+
 <%= link_to 'Back', collects_path %>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
+  type="text/javascript"></script>
+<script>
+    var map;
+    var markers = [];
+
+    function initMap() {
+        var lat_lng = {lat: 17.08672, lng: 78.42444};
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: lat_lng,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        });
+        // This event listener will call addMarker() when the map is clicked.
+        map.addListener('click', function (event) {
+            addMarker(event.latLng);
+            sendLocationToForm();
+        });
+        var infoWindow = new google.maps.InfoWindow({map: map});
+    }
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+    }
+    // Adds a marker to the map and push to the array.
+    function addMarker(location) {
+        if (markers.length < 3) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            markers.push(marker);
+
+            console.log("markers.length " + markers.length);
+
+            if (markers.length == 1) {           
+                $("#collect_measures_attributes_0_latitude").val(markers[markers.length - 1].getPosition().lat());
+                $("#collect_measures_attributes_0_longitude").val(markers[markers.length - 1].getPosition().lng());
+          } else if (markers.length == 2) {
+                $("#collect_measures_attributes_1_latitude").val(markers[markers.length - 1].getPosition().lat());
+                $("#collect_measures_attributes_1_longitude").val(markers[markers.length - 1].getPosition().lng());
+          } else {
+                $("#collect_measures_attributes_2_latitude").val(markers[markers.length - 1].getPosition().lat());
+                $("#collect_measures_attributes_2_longitude").val(markers[markers.length - 1].getPosition().lng());
+          }
+        }
+    }
+    function clearMarkers() {
+        setMapOnAll(null);
+    }
+    // Deletes all markers in the array by removing references to them.
+    function deleteLastMarker() {
+        markers[markers.length - 1].setMap(null);
+        markers.pop();
+    }
+</script>
