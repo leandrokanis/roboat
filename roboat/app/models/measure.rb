@@ -1,3 +1,3 @@
 class Measure < ApplicationRecord
-  belongs_to :collect
+  belongs_to :collect, required: false
 end
