@@ -17,8 +17,31 @@
   </div>
 
 <%=  f.fields_for  :measures do |measure_form| %>
-    <%= measure_form.label  :ph %>
-    <%= measure_form.text_field  :ph %>
+
+
+  <div class="field">
+    <%= measure_form.label :ph %>
+    <%= measure_form.text_field :ph %>
+  </div>
+
+  <div class="field">
+    <%= measure_form.label :turbidity %>
+    <%= measure_form.text_field :turbidity %>
+  </div>
+
+  <div class="field">
+    <%= measure_form.label :temperature %>
+    <%= measure_form.text_field :temperature %>
+  </div>
+
+  <div class="field">
+    <%= measure_form.label :conductivity %>
+    <%= measure_form.text_field :conductivity %>
+  </div>
+
+<br>
+<br>
+<br>
 <% end %>
 
   <div class="actions">
