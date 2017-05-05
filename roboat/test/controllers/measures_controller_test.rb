@@ -17,7 +17,7 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
 
   test "should create measure" do
     assert_difference('Measure.count') do
-      post measures_url, params: { measure: { name: @measure.name } }
+      post measures_url, params: { measure: { conductivity: @measure.conductivity, latitude: @measure.latitude, longitude: @measure.longitude, ph: @measure.ph, temperature: @measure.temperature, turbidity: @measure.turbidity } }
     end
 
     assert_redirected_to measure_url(Measure.last)
@@ -34,7 +34,7 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update measure" do
-    patch measure_url(@measure), params: { measure: { name: @measure.name } }
+    patch measure_url(@measure), params: { measure: { conductivity: @measure.conductivity, latitude: @measure.latitude, longitude: @measure.longitude, ph: @measure.ph, temperature: @measure.temperature, turbidity: @measure.turbidity } }
     assert_redirected_to measure_url(@measure)
   end
 

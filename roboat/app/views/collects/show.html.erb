@@ -1,45 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Ph:</strong>
-  <%= @collect.ph %>
+  <strong>Title:</strong>
+  <%= @collect.title %>
 </p>
 
-<p>
-  <strong>Turbidity:</strong>
-  <%= @collect.turbidity %>
-</p>
-
-<p>
-  <strong>Temperature:</strong>
-  <%= @collect.temperature %>
-</p>
-
-<p>
-  <strong>Conductivity:</strong>
-  <%= @collect.conductivity %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @collect.date %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @collect.location_id %>
-</p>
-
-
-<% if @collect.measures.present? %>
-<h4> List of measures </h4>
-<%@collect.measures.each do |measure| %>
-<p><%= link_to measure.name, measure %> </p>
-<%end %>
-<% else %>
-<h5>Não existem medições ainda </h5>
-<% end %>
-
+<%if @collect.measures.present? %>
+    <h4> List of Measures</h4>
+    <ul>
+        <%@collect.measures.each do |measure| %>
+          <li><strong><%= measure.id %>. </strong><%= measure.ph %></li>
+        <%end%>
+    </ul>    
+<%end%>
 
 <%= link_to 'Edit', edit_collect_path(@collect) %> |
 <%= link_to 'Back', collects_path %>

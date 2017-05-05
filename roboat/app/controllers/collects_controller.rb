@@ -22,7 +22,6 @@ class CollectsController < ApplicationController
 
   # GET /collects/1/edit
   def edit
-    @collect.measures.build
   end
 
   # POST /collects
@@ -73,6 +72,6 @@ class CollectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collect_params
-      params.require(:collect).permit(:ph, :turbidity, :temperature, :conductivity, :date, :location_id, measures_attributes: [:id, :name])
+      params.require(:collect).permit(:title, measures_attributes: [:ph, :conductivity, :tempereture, :turbidity, :id])
     end
 end

@@ -12,39 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :ph %>
-    <%= f.text_field :ph %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :turbidity %>
-    <%= f.text_field :turbidity %>
-  </div>
-
-  <div class="field">
-    <%= f.label :temperature %>
-    <%= f.text_field :temperature %>
-  </div>
-
-  <div class="field">
-    <%= f.label :conductivity %>
-    <%= f.text_field :conductivity %>
-  </div>
-
-  <div class="field">
-    <%= f.label :date %>
-    <%= f.datetime_select :date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location_id %>
-    <%= f.text_field :location_id %>
-  </div>
-
-  <%= f.fields_for :measures do |measure_form| %>
-  <%= measure_form.label :name %>
-  <%= measure_form.text_field :name %>
-  <% end %>
+<%=  f.fields_for  :measures do |measure_form| %>
+    <%= measure_form.label  :ph %>
+    <%= measure_form.text_field  :ph %>
+<% end %>
 
   <div class="actions">
     <%= f.submit %>

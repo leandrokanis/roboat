@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :collects
+  resources :measures
   resources :locations
   resources :boats
   resources :users
