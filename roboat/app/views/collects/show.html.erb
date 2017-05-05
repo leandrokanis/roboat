@@ -30,5 +30,16 @@
   <%= @collect.location_id %>
 </p>
 
+
+<% if @collect.measures.present? %>
+<h4> List of measures </h4>
+<%@collect.measures.each do |measure| %>
+<p><%= link_to measure.name, measure %> </p>
+<%end %>
+<% else %>
+<h5>Não existem medições ainda </h5>
+<% end %>
+
+
 <%= link_to 'Edit', edit_collect_path(@collect) %> |
 <%= link_to 'Back', collects_path %>

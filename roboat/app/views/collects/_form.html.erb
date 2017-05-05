@@ -41,6 +41,11 @@
     <%= f.text_field :location_id %>
   </div>
 
+  <%= f.fields_for :measures do |measure_form| %>
+  <%= measure_form.label :name %>
+  <%= measure_form.text_field :name %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
