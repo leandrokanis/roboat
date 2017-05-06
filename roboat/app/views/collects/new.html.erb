@@ -3,8 +3,6 @@
 <%= render 'form', collect: @collect %>
 
 <div id="floating-panel">
-  <input onclick="clearMarkers();" type=button value="Hide Markers">
-  <input onclick="showMarkers();" type=button value="Show All Markers">
   <input onclick="deleteLastMarker();" type=button value="Deletar Ultima Localização">
 </div>
 
@@ -51,9 +49,6 @@
             });
             markers.push(marker);
         }
-    }
-    function clearMarkers() {
-        setMapOnAll(null);
     }
     // Deletes all markers in the array by removing references to them.
     function deleteLastMarker() {
