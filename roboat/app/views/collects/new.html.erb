@@ -11,12 +11,17 @@
 <div id="map"></div>
 
 <%= link_to 'Back', collects_path %>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
-  type="text/javascript"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
+        type="text/javascript"></script>
 <script>
     var map;
     var markers = [];
 
+    function setValuesOnFields(amountOfMarkers) {
+        amountOfMarkers--;
+        $("#collect_measures_attributes_" + amountOfMarkers + "_latitude").val(markers[markers.length - 1].getPosition().lat());
+        $("#collect_measures_attributes_" + amountOfMarkers + "_longitude").val(markers[markers.length - 1].getPosition().lng());
+    }
     function initMap() {
         var lat_lng = {lat: 17.08672, lng: 78.42444};
         map = new google.maps.Map(document.getElementById('map'), {
@@ -27,7 +32,7 @@
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function (event) {
             addMarker(event.latLng);
-            sendLocationToForm();
+            setValuesOnFields(markers.length);
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
     }
@@ -45,19 +50,6 @@
                 map: map
             });
             markers.push(marker);
-
-            console.log("markers.length " + markers.length);
-
-            if (markers.length == 1) {           
-                $("#collect_measures_attributes_0_latitude").val(markers[markers.length - 1].getPosition().lat());
-                $("#collect_measures_attributes_0_longitude").val(markers[markers.length - 1].getPosition().lng());
-          } else if (markers.length == 2) {
-                $("#collect_measures_attributes_1_latitude").val(markers[markers.length - 1].getPosition().lat());
-                $("#collect_measures_attributes_1_longitude").val(markers[markers.length - 1].getPosition().lng());
-          } else {
-                $("#collect_measures_attributes_2_latitude").val(markers[markers.length - 1].getPosition().lat());
-                $("#collect_measures_attributes_2_longitude").val(markers[markers.length - 1].getPosition().lng());
-          }
         }
     }
     function clearMarkers() {
