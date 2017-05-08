@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'wellcome/index'
+
+  root 'wellcome#index'
+
   resources :collects
   resources :measures
   resources :boats
