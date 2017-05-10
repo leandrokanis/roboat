@@ -57,5 +57,9 @@
     function deleteLastMarker() {
         markers[markers.length - 1].setMap(null);
         markers.pop();
+
+        var amountOfMarkers = markers.length;
+        $("#collect_measures_attributes_" + amountOfMarkers + "_latitude").val("");
+        $("#collect_measures_attributes_" + amountOfMarkers + "_longitude").val("");
     }
 </script>
