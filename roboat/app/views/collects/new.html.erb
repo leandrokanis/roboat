@@ -2,11 +2,14 @@
 
 <%= render 'form', collect: @collect %>
 
-<div id="floating-panel">
-  <input onclick="deleteLastMarker();" type=button value="Deletar Ultima Localização">
-</div>
+<div id="content">
 
-<div id="map"></div>
+  <div id="floating-panel">
+    <input onclick="deleteLastMarker();" type=button value="Deletar Ultima Localização">
+  </div>
+
+  <div id="map"></div>
+</div>
 
 <%= link_to 'Back', collects_path %>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
