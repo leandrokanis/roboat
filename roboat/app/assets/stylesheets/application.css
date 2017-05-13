@@ -15,3 +15,13 @@
  *= require font-awesome
 *= require bootstrap_sb_admin_base_v2
  */
+
+.hidden{
+	display: hidden;
+}
+
+
+#page-wrapper {
+	margin:0 !important;
+	border-left: 0 !important;
+}

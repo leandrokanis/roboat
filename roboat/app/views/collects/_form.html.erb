@@ -11,46 +11,53 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
+
+<ol>
+  
 <%=  f.fields_for  :measures do |measure_form| %>
 
-
-  <div class="field">
+<li class="collect-group">
+  <p>Amostra: </p>
+  <div class="form-group hidden">
     <%= measure_form.label :ph %>
     <%= measure_form.text_field :ph %>
   </div>
 
-  <div class="field">
+  <div class="form-group hidden">
     <%= measure_form.label :turbidity %>
     <%= measure_form.text_field :turbidity %>
   </div>
 
-  <div class="field">
+  <div class="form-group hidden">
     <%= measure_form.label :temperature %>
     <%= measure_form.text_field :temperature %>
   </div>
 
-  <div class="field">
+  <div class="form-group hidden">
     <%= measure_form.label :conductivity %>
     <%= measure_form.text_field :conductivity %>
   </div>
 
 
-  <div class="field">
-    <%= measure_form.label :latitude %>
-    <%= measure_form.text_field :latitude %>
+  <div class="form-group">
+    <%= measure_form.label :latitude%>
+    <%= measure_form.text_field :latitude, disabled: true, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= measure_form.label :longitude %>
-    <%= measure_form.text_field :longitude %>
+    <%= measure_form.text_field :longitude, disabled: true, class: "form-control"  %>
   </div>
+
+</li>
 
 <% end %>
+</ol>
 
   <div class="actions">
     <%= f.submit %>
