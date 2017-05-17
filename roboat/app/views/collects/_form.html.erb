@@ -18,7 +18,7 @@
 
 
 <ol>
-  
+
 <%=  f.fields_for  :measures do |measure_form| %>
 
 <li class="collect-group">
@@ -46,12 +46,12 @@
 
   <div class="form-group">
     <%= measure_form.label :latitude%>
-    <%= measure_form.text_field :latitude, disabled: true, class: "form-control" %>
+    <%= measure_form.text_field :latitude, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= measure_form.label :longitude %>
-    <%= measure_form.text_field :longitude, disabled: true, class: "form-control"  %>
+    <%= measure_form.text_field :longitude, class: "form-control"  %>
   </div>
 
 </li>

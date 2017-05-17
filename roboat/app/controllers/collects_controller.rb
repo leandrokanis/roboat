@@ -72,6 +72,6 @@ class CollectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collect_params
-      params.require(:collect).permit(:title, measures_attributes: [:ph, :conductivity, :tempereture, :turbidity, :id])
+      params.require(:collect).permit(:title, measures_attributes: [:ph, :conductivity, :temperature, :latitude, :longitude, :turbidity, :id])
     end
 end
