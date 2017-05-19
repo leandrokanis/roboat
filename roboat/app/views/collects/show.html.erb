@@ -32,16 +32,19 @@
         <tbody>
 
           <%if @collect.measures.present? %>
-          <%@collect.measures.each do |measure| %>
-          <tr class="gradeA odd" role="row">
-            <td class="sorting_1"><strong><%= measure.id %>. </strong></td>
-            <td><%= measure.latitude %></td>
-            <td><%= measure.longitude %></td>
-            <td class="center"><%= measure.ph %></td>
-            <td class="center"><%= measure.turbidity %></td>
-            <td class="center"><%= measure.temperature %></td>
-            <td class="center"><%= measure.conductivity %></td>
-          </tr>
+            <% i=0 %>
+            <%@collect.measures.each do |measure| %>
+            <tr class="gradeA odd" role="row">
+              <td class="id-<%= i %>"><strong><%= measure.id %>. </strong></td>
+              <td class="latitude"><%= measure.latitude %></td>
+              <td class="longitude"><%= measure.longitude %></td>
+              <td class="ph"><%= measure.ph %></td>
+              <td class="turbidity"><%= measure.turbidity %></td>
+              <td class="temperature"><%= measure.temperature %></td>
+              <td class="conductivity"><%= measure.conductivity %></td>
+            </tr>
+            <% i=i+1 %>
+            <% end %>
           <%end%>
 
         </tbody>
@@ -53,8 +56,38 @@
 <!-- /.panel-body -->
 </div>
 <!-- /.panel -->
+
+
+
+<div id="measure_chart" style="height: 250px;"></div>
+
+
+
+
 </div>
-<%end%>
 
 <%= link_to 'Edit', edit_collect_path(@collect) %> |
 <%= link_to 'Back', collects_path %>
+
+
+<script type="text/javascript">
+new Morris.Bar({
+// ID of the element in which to draw the chart.
+element: 'measure_chart',
+// Chart data records -- each entry in this array corresponds to a point on
+// the chart.
+data: [
+  { parameter: 'pH', measure_1: $(".ph")[0].innerHTML, measure_2: $(".ph")[1].innerHTML,  measure_3: $(".ph")[2].innerHTML},
+  { parameter: 'Turbidez',  measure_1: $(".turbidity")[0].innerHTML, measure_2: $(".turbidity")[1].innerHTML,  measure_3: $(".turbidity")[2].innerHTML},
+  { parameter: 'Temperatura',  measure_1: $(".temperature")[0].innerHTML, measure_2: $(".temperature")[1].innerHTML,  measure_3: $(".temperature")[2].innerHTML},
+  { parameter: 'Condutividade',  measure_1: $(".conductivity")[0].innerHTML, measure_2: $(".conductivity")[1].innerHTML,  measure_3: $(".conductivity")[2].innerHTML}
+],
+// The name of the data record attribute that contains x-values.
+xkey: 'parameter',
+// A list of names of data record attributes that contain y-values.
+ykeys: ['measure_1', 'measure_2', 'measure_3' ],
+// Labels for the ykeys -- will be displayed when you hover over the
+// chart.
+labels: ['Medição ' + $(".id-0").text(), 'Medição ' + $(".id-1").text(), 'Medição ' + $(".id-2").text()]
+});
+</script>
