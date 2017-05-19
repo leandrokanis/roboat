@@ -31,7 +31,7 @@ class CollectsController < ApplicationController
 
     respond_to do |format|
       if @collect.save
-        format.html { redirect_to @collect, notice: 'Collect was successfully created.' }
+        format.html { redirect_to @collect, notice: 'Coleta foi criada com sucesso.'}
         format.json { render :show, status: :created, location: @collect }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class CollectsController < ApplicationController
   def destroy
     @collect.destroy
     respond_to do |format|
-      format.html { redirect_to collects_url, notice: 'Collect was successfully destroyed.' }
+      format.html { redirect_to collects_url, notice: 'Coleta foi removida com sucesso.' }
       format.json { head :no_content }
     end
   end
