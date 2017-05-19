@@ -33,7 +33,9 @@ type="text/javascript"></script>
     var latitude =  -15.820315;
     var longitude = -47.832984;
     var roboat_marker;
-
+    var labels = '123';
+    var labelIndex = 0;
+    var image = "<%=asset_path('roboat_icon.png')%>";
 
     function setValuesOnFields(amountOfMarkers) {
         amountOfMarkers--;
@@ -59,6 +61,7 @@ type="text/javascript"></script>
         roboat_marker = new google.maps.Marker({
             position: roboat_lat_lng,
             map: map,
+            icon: image,
             title: 'Roboat!'
         });
 
@@ -88,6 +91,7 @@ type="text/javascript"></script>
         if (markers.length < 3) {
             var marker = new google.maps.Marker({
                 position: location,
+                label: labels[labelIndex++ % labels.length],
                 map: map
             });
             markers.push(marker);
