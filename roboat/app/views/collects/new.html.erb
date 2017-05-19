@@ -30,6 +30,10 @@ type="text/javascript"></script>
 <script>
     var map;
     var markers = [];
+    var latitude =  -15.820315;
+    var longitude = -47.832984;
+    var roboat_marker;
+
 
     function setValuesOnFields(amountOfMarkers) {
         amountOfMarkers--;
@@ -49,6 +53,29 @@ type="text/javascript"></script>
             setValuesOnFields(markers.length);
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
+
+        var roboat_lat_lng = {lat: latitude, lng: longitude};
+
+        roboat_marker = new google.maps.Marker({
+            position: roboat_lat_lng,
+            map: map,
+            title: 'Roboat!'
+        });
+
+        // every 3 seconds
+        setInterval(changeRoboatPosition, 3);
+    }
+
+    function changeRoboatPosition() {
+        getRoboatNewLocation();
+
+        console.log("hello: "+ latitude);
+
+        roboat_marker.setPosition( new google.maps.LatLng(latitude , longitude) );
+    }
+    function getRoboatNewLocation() {
+        latitude += 0.000001;
+        longitude += 0.000001;
     }
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
