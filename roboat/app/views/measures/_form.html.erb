@@ -1,0 +1,47 @@
+<%= form_for(measure) do |f| %>
+  <% if measure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(measure.errors.count, "error") %> prohibited this measure from being saved:</h2>
+
+      <ul>
+      <% measure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ph %>
+    <%= f.text_field :ph %>
+  </div>
+
+  <div class="field">
+    <%= f.label :turbidity %>
+    <%= f.text_field :turbidity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :temperature %>
+    <%= f.text_field :temperature %>
+  </div>
+
+  <div class="field">
+    <%= f.label :conductivity %>
+    <%= f.text_field :conductivity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

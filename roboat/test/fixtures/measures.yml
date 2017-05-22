@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ph: 9.99
+  turbidity: 9.99
+  temperature: 9.99
+  conductivity: 9.99
+  latitude: 9.99
+  longitude: 9.99
+
+two:
+  ph: 9.99
+  turbidity: 9.99
+  temperature: 9.99
+  conductivity: 9.99
+  latitude: 9.99
+  longitude: 9.99

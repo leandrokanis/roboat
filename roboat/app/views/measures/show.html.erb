@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ph:</strong>
+  <%= @measure.ph %>
+</p>
+
+<p>
+  <strong>Turbidity:</strong>
+  <%= @measure.turbidity %>
+</p>
+
+<p>
+  <strong>Temperature:</strong>
+  <%= @measure.temperature %>
+</p>
+
+<p>
+  <strong>Conductivity:</strong>
+  <%= @measure.conductivity %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @measure.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @measure.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_measure_path(@measure) %> |
+<%= link_to 'Back', measures_path %>
