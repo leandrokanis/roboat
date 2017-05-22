@@ -116,22 +116,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     return obj_measure;
   }
 
-  function getPh(obj_measure){
-    return obj_measure.ph;
-  }
-
-  function getTurbidity(obj_measure){
-    return obj_measure.turbidity;
-  }
-
-  function getTemperature(obj_measure){
-    return obj_measure.temperature;
-  }
-
-  function getConductivity(obj_measure){
-    return obj_measure.conductivity;
-  }
-
   function resetCookies(){
     for (var i = 0; i <= 2; i++) {
       var cookie_measure_name = 'measure_' + i;
@@ -149,10 +133,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     var measure_name = 'measure_' + id.toString();
     Cookies.onchange(measure_name, function(){
       var obj_measure = parseMeasure(measure_name);
-      var ph = getPh(obj_measure);
-      var turbidity = getTurbidity(obj_measure);
-      var temperature = getTemperature(obj_measure);
-      var conductivity = getConductivity(obj_measure);
+      var ph = obj_measure.ph;
+      var turbidity = obj_measure.turbidity;
+      var temperature = obj_measure.temperature;
+      var conductivity = obj_measure.conductivity;
       $("#collect_measures_attributes_" + id.toString() + "_ph").val(ph);
       $("#collect_measures_attributes_" + id.toString() + "_turbidity").val(turbidity);
       $("#collect_measures_attributes_" + id.toString() + "_temperature").val(temperature);
