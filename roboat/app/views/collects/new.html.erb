@@ -91,7 +91,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     if (markers.length < 3) {
       var marker = new google.maps.Marker({
         position: location,
-        label: labels[labelIndex++ % labels.length],
+        label: labels[markers.length],
         map: map
       });
       markers.push(marker);
