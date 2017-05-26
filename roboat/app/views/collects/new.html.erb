@@ -146,33 +146,26 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
   function setMeasureParms(){
     resetCookies();
-    for (var i = 0; i <= 2; i++) {
+    for (var i = 0; i < 3; i++) {
       listenCookie(i);
     }
   }
 
+  function random(){
+    return Math.floor((Math.random() * 10) + 1);
+  }
+
   function test(){
-    Cookies.set('measure_0', {
-      "id": 1,
-      "ph": 7,
-      "turbidity": 4,
-      "temperature": 10,
-      "conductivity": 7
-    });
-    Cookies.set('measure_1', {
-      "id": 2,
-      "ph": 4,
-      "turbidity": 5,
-      "temperature": 9,
-      "conductivity": 9
-    });
-    Cookies.set('measure_2', {
-      "id": 3,
-      "ph": 5,
-      "turbidity": 9,
-      "temperature": 5,
-      "conductivity": 8
-    });
+    for (var i = 0; i < 3; i++) {
+      var measure_name = 'measure_' + i.toString();
+      Cookies.set(measure_name, {
+        "id": random(),
+        "ph": random(),
+        "turbidity": random(),
+        "temperature": random(),
+        "conductivity": random()
+      });
+    }
   }
 
   $(document).ready(function(){
