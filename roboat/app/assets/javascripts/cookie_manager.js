@@ -29,6 +29,8 @@ function listenCookie(id){
     $("#collect_measures_attributes_" + id.toString() + "_turbidity").val(turbidity);
     $("#collect_measures_attributes_" + id.toString() + "_temperature").val(temperature);
     $("#collect_measures_attributes_" + id.toString() + "_conductivity").val(conductivity);
+
+    measure_recieved(id);
   });
 }
 
@@ -43,8 +45,7 @@ function random(){
   return Math.floor((Math.random() * 10) + 1);
 }
 
-function test(){
-  for (var i = 0; i < 3; i++) {
+function test(i){
     var measure_name = 'measure_' + i.toString();
     Cookies.set(measure_name, {
       "id": random(),
@@ -53,7 +54,10 @@ function test(){
       "temperature": random(),
       "conductivity": random()
     });
-  }
+}
+
+function measure_recieved(measure_id){
+  console.log("Medição " + measure_id.toString() + " realizada");
 }
 
 $(document).ready(function(){

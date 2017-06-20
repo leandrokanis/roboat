@@ -1,5 +1,6 @@
 <div class="row">
   <h1>Monitorar Coleta</h1>
+    <%= @collect.title %>
   <%= link_to 'Back', collects_path %>
 </div>
 
@@ -29,3 +30,4 @@
 type="text/javascript"></script>
 
 <%= javascript_include_tag 'cookie_manager' %>
+<%= javascript_include_tag 'monitor_map' %>

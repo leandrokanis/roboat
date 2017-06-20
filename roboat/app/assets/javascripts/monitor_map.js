@@ -6,7 +6,7 @@ var longitude = -47.832984;
 var roboat_marker;
 var labels = '123';
 var labelIndex = 0;
-var image = "<%=asset_path('roboat_icon.png')%>";
+var image = "/assets/roboat_icon.png";
 
 function setValuesOnFields(amountOfMarkers) {
   amountOfMarkers--;
