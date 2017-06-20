@@ -1,6 +1,31 @@
-<h1>Editing Collect</h1>
+<div class="row">
+  <h1>Monitorar Coleta</h1>
+  <%= link_to 'Back', collects_path %>
+</div>
 
-<%= render 'form', collect: @collect %>
+<div class="row">
 
-<%= link_to 'Show', @collect %> |
-<%= link_to 'Back', collects_path %>
+  <div class="col-md-6">
+    <%= render 'edit_form', collect: @collect %>
+  </div>
+
+  <div class="col-md-6">
+
+    <div id="content">
+
+      <div id="floating-panel">
+        <input onclick="deleteLastMarker();" type=button value="Deletar Ultima Localização">
+      </div>
+
+      <div id="map"></div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
+type="text/javascript"></script>
+
+<%= javascript_include_tag 'cookie_manager' %>
