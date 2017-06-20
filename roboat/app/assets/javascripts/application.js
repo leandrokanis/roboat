@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap_sb_admin_base_v2
+//= require raphael
+//= require morris
 //= require js.cookie
 //= require jquery.cookie.listener
 //= require_tree .
