@@ -24,6 +24,7 @@
 }
 
 .overflow-hidden {overflow: hidden;}
+.padding-30{padding: 0 30px !important;}
 
 #page-wrapper {
 	margin:0 !important;
@@ -41,3 +42,18 @@
 	position: absolute;
 	z-index: 999;
 }
+
+#wrapper{margin-top: 39px;}
+
+#sidebar-wrapper{
+	padding: 0;
+}
+
+.delete-location{
+		right: 10px;
+		top: 30px;
+		position: absolute;
+		z-index: 999;
+}
+
+ol{padding: 0;}

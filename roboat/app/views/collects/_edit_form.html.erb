@@ -1,0 +1,67 @@
+<%= form_for(collect) do |f| %>
+  <% if collect.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(collect.errors.count, "error") %> prohibited this collect from being saved:</h2>
+
+      <ul>
+      <% collect.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, "Título" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+
+<ol>
+
+<%=  f.fields_for  :measures do |measure_form| %>
+
+<li class="collect-group">
+  <p>Amostra: </p>
+  <div class="form-group">
+    <%= measure_form.label :ph, "pH" %>
+    <%= measure_form.text_field :ph %>
+  </div>
+
+  <div class="form-group">
+    <%= measure_form.label :turbidity %>
+    <%= measure_form.text_field :turbidity %>
+  </div>
+
+  <div class="form-group">
+    <%= measure_form.label :temperature %>
+    <%= measure_form.text_field :temperature %>
+  </div>
+
+  <div class="form-group">
+    <%= measure_form.label :conductivity %>
+    <%= measure_form.text_field :conductivity %>
+  </div>
+
+
+<div class="row">
+  <div class="form-group col-md-6">
+    <%= measure_form.label :latitude%>
+    <%= measure_form.text_field :latitude, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= measure_form.label :longitude %>
+    <%= measure_form.text_field :longitude, class: "form-control"  %>
+  </div>
+</div>
+
+</li>
+
+<% end %>
+</ol>
+
+  <div class="actions">
+    <%= f.submit "Enviar", class: 'btn btn-success' %>
+  </div>
+<% end %>
