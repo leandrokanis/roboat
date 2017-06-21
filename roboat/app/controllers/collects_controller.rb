@@ -31,8 +31,8 @@ class CollectsController < ApplicationController
 
     respond_to do |format|
       if @collect.save
-        format.html { redirect_to @collect, notice: 'Coleta foi criada com sucesso.'}
-        format.json { render :show, status: :created, location: @collect }
+        format.html { redirect_to edit_collect_path(@collect), notice: 'Coleta foi criada com sucesso.'}
+        format.json { render :edit, status: :created, location: @collect }
       else
         format.html { render :new }
         format.json { render json: @collect.errors, status: :unprocessable_entity }
