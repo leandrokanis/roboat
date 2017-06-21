@@ -29,14 +29,20 @@ class CollectsController < ApplicationController
     @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
 
     @serialport.write('1')
-    # small delay so it can write to the other port.
     sleep 5
-    print @serialport.read(100)
+    read_value = @serialport.read(100)
+    cookies['measure_0'] = {
+        :value => read_value
+    }
+    print read_value
 
     @serialport.write('0')
-    # small delay so it can write to the other port.
     sleep 5
-    print @serialport.read(100)
+    read_value = @serialport.read(100)
+    cookies['measure_0'] = {
+        :value => read_value
+    }
+    print read_value
   end
 
   # POST /collects
