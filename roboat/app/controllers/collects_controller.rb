@@ -26,23 +26,27 @@ class CollectsController < ApplicationController
   end
 
   def receive_data_from_xbee
-    @serialport = Serial.new '/dev/ttyACM0' # Defaults to 9600 baud, 8 data bits, and no parity
+    @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
 
     @serialport.write('1')
-    sleep 5
-    read_value = @serialport.read(100)
-    cookies['measure_0'] = {
-        :value => read_value
-    }
-    print read_value
 
-    @serialport.write('0')
-    sleep 5
     read_value = @serialport.read(100)
+    sleep 1
+    read_value += @serialport.read(100)
+    sleep 1
+    read_value += @serialport.read(100)
+    sleep 1
+    read_value += @serialport.read(100)
+    sleep 1
+    read_value += @serialport.read(100)
+    sleep 1
+    read_value += @serialport.read(100)
+
+    print "last read_value = " + read_value
+
     cookies['measure_0'] = {
         :value => read_value
     }
-    print read_value
   end
 
   # POST /collects
