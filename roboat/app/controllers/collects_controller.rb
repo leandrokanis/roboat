@@ -30,23 +30,21 @@ class CollectsController < ApplicationController
 
     @serialport.write('1')
 
-    read_value = @serialport.read(100)
-    sleep 1
-    read_value += @serialport.read(100)
-    sleep 1
-    read_value += @serialport.read(100)
-    sleep 1
-    read_value += @serialport.read(100)
-    sleep 1
-    read_value += @serialport.read(100)
-    sleep 1
-    read_value += @serialport.read(100)
-
-    print "last read_value = " + read_value
+    read_value = build_full_message
 
     cookies['measure_0'] = {
         :value => read_value
     }
+  end
+
+  def build_full_message
+    read_value = ""
+    for i in 0..5
+      read_value += @serialport.read(100)
+      sleep 1
+    end
+    print "last read_value = " + read_value
+    read_value
   end
 
   # POST /collects
