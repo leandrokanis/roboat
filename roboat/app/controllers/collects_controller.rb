@@ -26,7 +26,7 @@ class CollectsController < ApplicationController
   end
 
   def receive_data_from_xbee
-    @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
+    @serialport = Serial.new '/dev/ttyACM0' # Defaults to 9600 baud, 8 data bits, and no parity
 
     @serialport.write('1')
     sleep 5
