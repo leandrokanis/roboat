@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'wellcome/index'
-
   root 'wellcome#index'
+  
+  get 'collects/:id/receive_data_from_xbee' => 'collects#receive_data_from_xbee'
 
   resources :collects
   resources :measures

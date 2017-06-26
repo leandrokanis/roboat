@@ -1,29 +1,19 @@
-<div class="row">
-  <h1>Nova Coleta</h1>
-  <%= link_to 'Back', collects_path %>
-</div>
-
-<div class="row">
-
-  <div class="col-md-6">
-    <%= render 'form', collect: @collect %>
-  </div>
-
-  <div class="col-md-6">
-
-    <div id="content">
-
-      <div id="floating-panel">
-        <input onclick="deleteLastMarker();" type=button value="Deletar Ultima Localização">
-      </div>
-
-      <div id="map"></div>
+<div id="sidebar-wrapper">
+  <div class="row">
+    <h1>Nova Coleta</h1>
+    <div class="col-md-12">
+      <%= render 'form', collect: @collect %>
     </div>
   </div>
-
 </div>
 
+<a href="#menu-toggle" class="btn btn-default " id="menu-toggle">
+  <span class="glyphicon glyphicon-menu-hamburger" id="menu-icon" aria-hidden="true"></span>
+</a>
 
+<input  class="btn btn-xs btn-danger delete-location" onclick="deleteLastMarker();" type=button value="Deletar última localização">
+
+<div id="map"></div>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
 type="text/javascript"></script>
@@ -63,6 +53,10 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: lat_lng,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
   // This event listener will call addMarker() when the map is clicked.
@@ -184,8 +178,25 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     }
   }
 
+  function openSidebar(){
+    $("#wrapper").toggleClass("toggled");
+    $("#wrapper").toggleClass("overflow-hidden");
+    $("#sidebar-wrapper").toggleClass("padding-30");
+    if ($("#menu-icon").hasClass("glyphicon-menu-hamburger")) {
+      $("#menu-icon").removeClass("glyphicon-menu-hamburger").toggleClass("glyphicon-remove");
+    } else {
+      $("#menu-icon").removeClass("glyphicon-remove").toggleClass("glyphicon-menu-hamburger");
+    }
+  }
+
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    openSidebar();
+  });
+
   $(document).ready(function(){
     setMeasureParms();
+    openSidebar();
   });
 
   $("#collect_measures_attributes_0_longitude").keyup( function(){

@@ -22,6 +22,29 @@ class CollectsController < ApplicationController
 
   # GET /collects/1/edit
   def edit
+    receive_data_from_xbee
+  end
+
+  def receive_data_from_xbee
+    @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
+
+    @serialport.write('1')
+
+    read_value = build_full_message
+
+    cookies['measure_0'] = {
+        :value => read_value
+    }
+  end
+
+  def build_full_message
+    read_value = ""
+    for i in 0..5
+      read_value += @serialport.read(100)
+      sleep 1
+    end
+    print "last read_value = " + read_value
+    read_value
   end
 
   # POST /collects
@@ -31,8 +54,8 @@ class CollectsController < ApplicationController
 
     respond_to do |format|
       if @collect.save
-        format.html { redirect_to @collect, notice: 'Coleta foi criada com sucesso.'}
-        format.json { render :show, status: :created, location: @collect }
+        format.html { redirect_to edit_collect_path(@collect), notice: 'Coleta foi criada com sucesso.' }
+        format.json { render :edit, status: :created, location: @collect }
       else
         format.html { render :new }
         format.json { render json: @collect.errors, status: :unprocessable_entity }
@@ -65,13 +88,13 @@ class CollectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collect
-      @collect = Collect.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_collect
+    @collect = Collect.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def collect_params
-      params.require(:collect).permit(:title, measures_attributes: [:ph, :conductivity, :temperature, :latitude, :longitude, :turbidity, :id])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def collect_params
+    params.require(:collect).permit(:title, measures_attributes: [:ph, :conductivity, :temperature, :latitude, :longitude, :turbidity, :id])
+  end
 end
