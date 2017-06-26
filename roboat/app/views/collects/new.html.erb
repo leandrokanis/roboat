@@ -33,21 +33,6 @@ function setValuesOnFields(amountOfMarkers) {
   $("#collect_measures_attributes_" + amountOfMarkers + "_longitude").val(markers[markers.length - 1].getPosition().lng());
 }
 
-function setValuesOnMap(amountOfMarkers) {
-
-    //amountOfMarkers--;
-
-    console.log("amountOfMarkers = " + amountOfMarkers);
-
-    var lat = $("#collect_measures_attributes_" + markers.length + "_latitude").val();
-    var lng = $("#collect_measures_attributes_" + markers.length + "_longitude").val();
-
-    var latitude = parseFloat(lat);
-    var longitude = parseFloat(lng);
-
-    addMarker({lat: parseFloat(latitude), lng: parseFloat(longitude)});
-}
-
 function initMap() {
   var lat_lng = {lat: -15.820315, lng: -47.832984};
   map = new google.maps.Map(document.getElementById('map'), {
@@ -79,17 +64,50 @@ function initMap() {
   setInterval(changeRoboatPosition, 3);
 }
 
-function changeRoboatPosition() {
-  getRoboatNewLocation();
+function editPositionOnMap(marker) {
 
-  //console.log("hello: "+ latitude);
+    var latitude = $("#collect_measures_attributes_" + marker + "_latitude").val();
+    var longitude = $("#collect_measures_attributes_" + marker + "_longitude").val();
 
-  roboat_marker.setPosition( new google.maps.LatLng(latitude , longitude) );
+    if(markers.length === 0 && marker === 0){
+        console.log("lentgh = " + markers.length + " marker = " + marker);
+        addMarker({lat: parseFloat(latitude), lng: parseFloat(longitude)});
+        
+    } else if (markers.length > 0 && marker === 0) {
+        console.log("lentgh = " + markers.length + " marker = " + marker);
+        markers[marker].setPosition( new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)));
+    }
+
+    if (markers.length === 1 && marker === 1) {
+        console.log("lentgh = " + markers.length + " marker = " + marker);
+        addMarker({lat: parseFloat(latitude), lng: parseFloat(longitude)});
+
+    } else if (markers.length > 1 && marker === 1) {
+        console.log("lentgh = " + markers.length + " marker = " + marker);
+        markers[marker].setPosition( new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)));
+    }
+
+    if (markers.length === 2 && marker === 2) {
+        console.log("lentgh = " + markers.length + " marker = " + marker);
+        addMarker({lat: parseFloat(latitude), lng: parseFloat(longitude)});
+    } else if (markers.length > 2 && marker === 2) {
+        console.log("lentgh = " + markers.length + " marker = " + marker);
+        markers[marker].setPosition( new google.maps.LatLng(parseFloat(latitude) , parseFloat(longitude)));
+    }
 }
+
+function changeRoboatPosition() {
+
+    getRoboatNewLocation();
+
+    roboat_marker.setPosition( new google.maps.LatLng(latitude , longitude));
+}
+
 function getRoboatNewLocation() {
   latitude += 0.000001;
   longitude += 0.000001;
 }
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
@@ -199,19 +217,22 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     openSidebar();
   });
 
-  $("#collect_measures_attributes_0_longitude").keyup( function(){
+  $("#collect_measures_attributes_0_longitude").focusout( function(){
 
-      setValuesOnMap(markers.length);
+      console.log("#collect_measures_attributes_0_longitude");
+      editPositionOnMap(0);
   });
 
   $("#collect_measures_attributes_1_longitude").focusout( function(){
 
-    setValuesOnMap(markers.length);
+      console.log("#collect_measures_attributes_1_longitude");
+      editPositionOnMap(1);
   });
 
   $("#collect_measures_attributes_2_longitude").focusout( function(){
 
-    setValuesOnMap(markers.length);
+      console.log("#collect_measures_attributes_2_longitude");
+      editPositionOnMap(2);
   });
 
 
