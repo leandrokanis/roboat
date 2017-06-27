@@ -11,3 +11,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( cookie_manager.js )
 Rails.application.config.assets.precompile += %w( monitor_map.js )
+Rails.application.config.assets.precompile += %w( new_map.js )
+Rails.application.config.assets.precompile += %w( sidebar.js )
