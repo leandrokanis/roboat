@@ -63,7 +63,7 @@ function editPositionOnMap(markerId) {
         });
 
     } else if (markers.length > markerId && markerId === markerId) {
-        markers[marker].setPosition(new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)));
+        markers[markerId].setPosition(new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)));
     }
 }
 
