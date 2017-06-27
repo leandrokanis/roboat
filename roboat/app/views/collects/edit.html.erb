@@ -15,27 +15,7 @@
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
 type="text/javascript"></script>
-<script>
-  function openSidebar(){
-    $("#wrapper").toggleClass("toggled");
-    $("#wrapper").toggleClass("overflow-hidden");
-    $("#sidebar-wrapper").toggleClass("padding-30");
-    if ($("#menu-icon").hasClass("glyphicon-menu-hamburger")) {
-      $("#menu-icon").removeClass("glyphicon-menu-hamburger").toggleClass("glyphicon-remove");
-    } else {
-      $("#menu-icon").removeClass("glyphicon-remove").toggleClass("glyphicon-menu-hamburger");
-    }
-  }
 
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    openSidebar();
-  });
-
-  $(document).ready(function(){
-    openSidebar();
-  });
-</script>
-
+<%= javascript_include_tag 'sidebar' %>
 <%= javascript_include_tag 'cookie_manager' %>
 <%= javascript_include_tag 'monitor_map' %>
