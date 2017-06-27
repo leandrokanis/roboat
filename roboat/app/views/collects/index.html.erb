@@ -1,27 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Collects</h1>
+<h1>Coletas Existentes</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
       <th colspan="3"></th>
-    </tr>
+    
+</table>  
+  <div id="table" class="table-editable">
+    <table class="table">
+        <th>Nome</th>
   </thead>
 
   <tbody>
     <% @collects.each do |collect| %>
       <tr>
         <td><%= collect.title %></td>
-        <td><%= link_to 'Show', collect %></td>
-        <td><%= link_to 'Edit', edit_collect_path(collect) %></td>
-        <td><%= link_to 'Destroy', collect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Detalhar', collect %></td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        <%= link_to 'Editar', edit_collect_path(collect) %>
+        </td>
+        <td>
+           <span class="table-remove glyphicon glyphicon-remove"></span>
+        <%= link_to 'Remover', collect, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
-</table>
+ 
+        </td>
+      </tr>
+      <!-- This is our clonable table line -->
+      <tr class="hide">
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+<%= link_to 'Nova Coleta', new_collect_path %>
 
-<br>
+</div>
 
-<%= link_to 'New Collect', new_collect_path %>

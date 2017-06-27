@@ -1,6 +1,21 @@
-<h1>Editing Collect</h1>
+<div id="sidebar-wrapper">
+  <div class="row">
+    <h1>Monitorar Coleta</h1>
+    <div class="col-md-12">
+      <%= render 'edit_form', collect: @collect %>
+    </div>
+  </div>
+</div>
 
-<%= render 'form', collect: @collect %>
+<a href="#menu-toggle" class="btn btn-default " id="menu-toggle">
+  <span class="glyphicon glyphicon-menu-hamburger" id="menu-icon" aria-hidden="true"></span>
+</a>
 
-<%= link_to 'Show', @collect %> |
-<%= link_to 'Back', collects_path %>
+<div id="map"></div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQjjH5bKQZa5VQtSm6gUIIxD8xJRN8ss&callback=initMap"
+type="text/javascript"></script>
+
+<%= javascript_include_tag 'sidebar' %>
+<%= javascript_include_tag 'cookie_manager' %>
+<%= javascript_include_tag 'monitor_map' %>
