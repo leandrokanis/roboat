@@ -1,5 +1,6 @@
 class CollectsController < ApplicationController
   before_action :set_collect, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /collects
   # GET /collects.json

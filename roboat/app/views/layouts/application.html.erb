@@ -45,8 +45,8 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="../navbar-static-top/">Logout</a></li>
-        <li class="active"><a href="./">Usuário</span></a></li>
+        <li>  <li><%= link_to "Novo Usuário", new_user_registration_path %></a></li></li>
+         <li>  <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></a></li></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
