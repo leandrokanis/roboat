@@ -1,7 +1,7 @@
 var map;
 var markers = [];
-var latitude = -15.820315;
-var longitude = -47.832984;
+var latitude = -15.82031;
+var longitude = -47.83298;
 var roboat_marker;
 var labels = '123';
 var labelIndex = 0;
@@ -15,8 +15,8 @@ function setValuesOnFields(amountOfMarkers) {
 
 function initMap() {
     var lat_lng = {
-        lat: -15.820315,
-        lng: -47.832984
+        lat: -15.82031,
+        lng: -47.83298
     };
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
@@ -73,8 +73,7 @@ function changeRoboatPosition() {
 }
 
 function getRoboatNewLocation() {
-    latitude += 0.000001;
-    longitude += 0.000001;
+
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -108,6 +107,15 @@ function call_edit_position(j) {
     return function(event) {
         editPositionOnMap(j);
     }
+}
+
+function send_locations_to_roboat () {
+  var message = "";
+  for (var i = 0; i < markers.length; i++) {
+    message += i +": "+ markers[i].getPosition().lat() + "," + markers[i].getPosition().lng()+"\n";
+  }
+  
+  document.cookie = "locations=" + message;
 }
 
 for (var i = 0; i < 3; i++) {

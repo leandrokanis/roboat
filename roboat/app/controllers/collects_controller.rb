@@ -23,11 +23,12 @@ class CollectsController < ApplicationController
   # GET /collects/1/edit
   def edit
     receive_data_from_xbee
+    send_data
   end
 
   def receive_data_from_xbee
-    @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
-
+    # @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
+    @serialport = Serial.new '/dev/ttyACM0'
     @serialport.write('1')
 
     read_value = build_full_message
@@ -45,6 +46,12 @@ class CollectsController < ApplicationController
     end
     print "last read_value = " + read_value
     read_value
+  end
+
+  def send_data
+    puts "teste"
+    puts cookies[:locations]
+    @serialport.write(cookies[:locations])
   end
 
   # POST /collects
