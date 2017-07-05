@@ -109,14 +109,36 @@ function call_edit_position(j) {
     }
 }
 
-function send_locations_to_roboat () {
+function send_locations_to_roboat() {
   var message = "";
   for (var i = 0; i < markers.length; i++) {
-    message += i +": "+ markers[i].getPosition().lat() + "," + markers[i].getPosition().lng()+"\n";
+    message += i +": "+ $("#collect_measures_attributes_" + i + "_latitude").val() + "," +
+                        $("#collect_measures_attributes_" + i + "_longitude").val() + "\n";
   }
-  
+
   document.cookie = "locations=" + message;
+  console.log("COOKIE = " + getCookie("locations"))
 }
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+$(".send-info").click(function(){
+    send_locations_to_roboat();
+});
 
 for (var i = 0; i < 3; i++) {
     $("#collect_measures_attributes_" + i.toString() + "_longitude").keyup(call_edit_position(i));
