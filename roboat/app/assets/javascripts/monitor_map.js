@@ -35,12 +35,6 @@ function setAllMarkers(){
   }
 }
 
-function changeRoboatPosition() {
-    getRoboatNewLocation();
-    roboat_marker.setPosition(new google.maps.LatLng(latitude, longitude));
-}
-
-
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -93,15 +87,24 @@ function getHeading(marker_id){
   return heading;
 }
 
-function navigate_forward(){
-
+function lat_dif(i){
+  return roboat_marker.getPosition().lat() - markers[i].getPosition().lat();
 }
 
-function navigate(marker_id){
-    latitude += 0.000001;
-    longitude += 0.000001;
+function lng_dif(i){
+  return roboat_marker.getPosition().lng() - markers[i].getPosition().lng();
+}
+
+function navigate(i){
+  latitude -= lat_dif(i) / 1000;
+  longitude -= lng_dif(i) / 1000;
+}
+
+function changeRoboatPosition() {
+    getRoboatNewLocation();
+    roboat_marker.setPosition(new google.maps.LatLng(latitude, longitude));
 }
 
 function getRoboatNewLocation() {
-  navigate();
+  navigate(2);
 }
