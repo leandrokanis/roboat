@@ -35,6 +35,7 @@ class CollectsController < ApplicationController
 
   def connect_serial
     @serialport = Serial.new '/dev/ttyUSB2' # Defaults to 9600 baud, 8 data bits, and no parity
+    # @serialport = Serial.new '/dev/ttyACM0' # Defaults to 9600 baud, 8 data bits, and no parity
   end
 
   def receive_measure_0
