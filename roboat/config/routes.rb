@@ -12,7 +12,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'collects/:id/receive_data_from_xbee' => 'collects#receive_data_from_xbee'
+  get 'collects/:id/receive_measure_0' => 'collects#receive_measure_0'
+  get 'collects/:id/receive_measure_1' => 'collects#receive_measure_1'
+  get 'collects/:id/receive_measure_2' => 'collects#receive_measure_2'
+  get 'collects/:id/left' => 'collects#left'
+  get 'collects/:id/right' => 'collects#right'
+  get 'collects/:id/forward' => 'collects#forward'
+  get 'collects/:id/back' => 'collects#back'
 
   resources :collects
   resources :measures
