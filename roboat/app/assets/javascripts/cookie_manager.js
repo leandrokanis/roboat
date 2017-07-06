@@ -17,10 +17,6 @@ function resetCookies() {
             "conductivity": null
         });
     }
-    Cookies.set("roboat_location", {
-      "lat": null,
-      "lng": null
-    });
 }
 
 function listenCookie(id) {
@@ -52,12 +48,16 @@ function setMeasureParms() {
 function listenLocationCookie(){
   Cookies.onchange("roboat_location", function() {
     var obj_location = parseMeasure("roboat_location");
-    var lat = obj_location.lat;
-    var lng = obj_location.lng;
+    var lat = obj_location.latitude;
+    var lng = obj_location.longitude;
     // latitude = lat;
     // longitude = lng;
     roboat_marker.setPosition(new google.maps.LatLng(lat, lng));
   });
+  // Cookies.set("roboat_location", {
+  //   "lat": null,
+  //   "lng": null
+  // });
 }
 
 function loc(){

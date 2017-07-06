@@ -61,3 +61,44 @@ html, body {
 		position: absolute;
 		z-index: 999;
 }
+
+.controles{
+  z-index: 999;
+  position: fixed;
+  right: 0;
+  /* width: 0; */
+  height: 100%;
+  margin-left: 10px;
+  overflow-y: auto;
+  background: #FFF;
+  padding: 20px;
+  margin: 50px;
+  height: 200px;
+  bottom: 0;
+  width: 200px;
+}
+
+.btn-up, .btn-down, .btn-left, .btn-right, .btn-collect {
+  position: absolute;
+}
+
+.btn-up {
+  top: 29px;
+  left: 76px;
+}
+.btn-down {
+  bottom: 24px;
+  left: 76px;
+  }
+.btn-left {
+  left: 20px;
+  top: 80px;
+}
+.btn-right {
+  right: 20px;
+  top: 80px;
+}
+.btn-collect {
+  right: 75px;
+  top: 80px;
+}

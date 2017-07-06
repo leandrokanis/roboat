@@ -23,19 +23,66 @@ class CollectsController < ApplicationController
 
   # GET /collects/1/edit
   def edit
+    connect_serial
+    @serialport.write('1')
+    read_value = build_full_message
+    puts "VALOR DA LOCALIZACAO = " + read_value
+    cookies['roboat_location'] = {
+        :value => read_value
+    }
     # receive_data_from_xbee
   end
 
-  def receive_data_from_xbee
-    @serialport = Serial.new '/dev/tty.usbserial-A50285BI' # Defaults to 9600 baud, 8 data bits, and no parity
+  def connect_serial
+    @serialport = Serial.new '/dev/ttyUSB2' # Defaults to 9600 baud, 8 data bits, and no parity
+  end
 
+  def receive_measure_0
+    connect_serial
     @serialport.write('1')
-
     read_value = build_full_message
-
+    puts read_value
     cookies['measure_0'] = {
         :value => read_value
     }
+  end
+
+  def receive_measure_1
+    connect_serial
+    @serialport.write('1')
+    read_value = build_full_message
+    cookies['measure_1'] = {
+        :value => read_value
+    }
+  end
+
+  def receive_measure_2
+    connect_serial
+    @serialport.write('1')
+    read_value = build_full_message
+    cookies['measure_2'] = {
+        :value => read_value
+    }
+  end
+
+  def left
+    connect_serial
+    @serialport.write('a')
+  end
+
+  def right
+    connect_serial
+    @serialport.write('d')
+  end
+
+  def back
+    connect_serial
+    @serialport.write('s')
+  end
+
+  def forward
+    connect_serial
+    @serialport.write('w')
   end
 
   def build_full_message
