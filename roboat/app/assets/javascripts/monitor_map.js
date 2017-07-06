@@ -40,10 +40,6 @@ function changeRoboatPosition() {
     roboat_marker.setPosition(new google.maps.LatLng(latitude, longitude));
 }
 
-function getRoboatNewLocation() {
-    latitude += 0.000001;
-    longitude += 0.000001;
-}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -85,4 +81,27 @@ function initMap() {
     // every 3 seconds
     setInterval(changeRoboatPosition, 3);
     setAllMarkers();
+}
+
+function getDistance(marker_id){
+  var distance = google.maps.geometry.spherical.computeDistanceBetween(roboat_marker.getPosition(), markers[marker_id].getPosition());
+  return distance;
+}
+
+function getHeading(marker_id){
+  var heading = google.maps.geometry.spherical.computeHeading(roboat_marker.getPosition(), markers[marker_id].getPosition());
+  return heading;
+}
+
+function navigate_forward(){
+
+}
+
+function navigate(marker_id){
+    latitude += 0.000001;
+    longitude += 0.000001;
+}
+
+function getRoboatNewLocation() {
+  navigate();
 }

@@ -27,13 +27,6 @@ ActiveRecord::Schema.define(version: 20170629171230) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.decimal  "latitude"
-    t.decimal  "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "measures", force: :cascade do |t|
     t.decimal  "ph"
     t.decimal  "turbidity"

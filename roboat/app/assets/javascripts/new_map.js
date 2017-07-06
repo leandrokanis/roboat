@@ -83,6 +83,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
+
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
     if (markers.length < 3) {
@@ -94,6 +95,7 @@ function addMarker(location) {
         markers.push(marker);
     }
 }
+
 // Deletes all markers in the array by removing references to them.
 function deleteLastMarker() {
     markers[markers.length - 1].setMap(null);
