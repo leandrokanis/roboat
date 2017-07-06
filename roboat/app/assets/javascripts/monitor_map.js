@@ -73,7 +73,7 @@ function initMap() {
     });
 
     // every 3 seconds
-    setInterval(changeRoboatPosition, 3);
+    //setInterval(changeRoboatPosition, 3);
     setAllMarkers();
 }
 
@@ -95,16 +95,7 @@ function lng_dif(i){
   return roboat_marker.getPosition().lng() - markers[i].getPosition().lng();
 }
 
-function navigate(i){
+function navigate_example(i){
   latitude -= lat_dif(i) / 1000;
   longitude -= lng_dif(i) / 1000;
-}
-
-function changeRoboatPosition() {
-    getRoboatNewLocation();
-    roboat_marker.setPosition(new google.maps.LatLng(latitude, longitude));
-}
-
-function getRoboatNewLocation() {
-  navigate(2);
 }

@@ -17,6 +17,10 @@ function resetCookies() {
             "conductivity": null
         });
     }
+    Cookies.set("roboat_location", {
+      "lat": null,
+      "lng": null
+    });
 }
 
 function listenCookie(id) {
@@ -43,6 +47,27 @@ function setMeasureParms() {
     }
 }
 
+// location Cookies
+
+function listenLocationCookie(){
+  Cookies.onchange("roboat_location", function() {
+    var obj_location = parseMeasure("roboat_location");
+    var lat = obj_location.lat;
+    var lng = obj_location.lng;
+    // latitude = lat;
+    // longitude = lng;
+    roboat_marker.setPosition(new google.maps.LatLng(lat, lng));
+  });
+}
+
+function loc(){
+  Cookies.set("roboat_location", {
+      "lat": -15.820111,
+      "lng": -47.832111
+  });
+}
+
+
 function random() {
     return Math.floor((Math.random() * 10) + 1);
 }
@@ -64,4 +89,5 @@ function measure_recieved(measure_id) {
 
 $(document).ready(function () {
     setMeasureParms();
+    listenLocationCookie();
 });
