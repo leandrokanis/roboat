@@ -159,17 +159,22 @@ $(function() {
     }).on('keypress', function(e) {
         var val = String.fromCharCode(e.which)
         if (val === "a") {
-          $.ajax("left");
+          left();
         }
         if (val === "d") {
-          $.ajax("right");
+          right();
         }
         if (val === "w") {
-          $.ajax("forward");
+          forward();
         }
         if (val === "s") {
-          $.ajax("back");
+          back();
         }
     });
 
 });
+
+function left(){$.ajax("left");}
+function right(){$.ajax("right");}
+function forward(){$.ajax("forward");}
+function back(){$.ajax("back");}
